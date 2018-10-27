@@ -2,5 +2,4 @@
 *Putting to use the tools and methods learned each week.*
 
 ### Week 1: Recognizing cat and dog breeds
-* Mini Sideproject - [Blue Jay species classifier](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson1_mini_sideproject.ipynb)
-     * Blog post
+* My Mini Sideproject - [Blue Jay species classifier](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson1_mini_sideproject.ipynb) -> Writeup on Medium
