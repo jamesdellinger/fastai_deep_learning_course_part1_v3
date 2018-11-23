@@ -12,10 +12,10 @@
 * [Gradient Descent from Scratch](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson2-sgd-my-reimplementation.ipynb?flush_cache=true)
 
 ### Week 3: Multi-Label Segmentation, Image Regression, and More...
-* [Camvid SOTA](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson3-camvid-my-implementation.ipynb?flush_cache=true)
-* [Biwi Head-pose](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson3-head-pose-my-reimplementation.ipynb?flush_cache=true)
+* [CamVid Segmentation SOTA](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson3-camvid-my-implementation.ipynb?flush_cache=true)
+* [Biwi Kinect Head Pose Image Regression](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson3-head-pose-my-reimplementation.ipynb?flush_cache=true)
+* [Kaggle Planets Competition Multi-Label Classification](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson3-planet-my-reimplementation.ipynb?flush_cache=true)
 * [IMDB Sentiment Analysis SOTA](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson3-imdb-my-reimplementation.ipynb?flush_cache=true)
-* [Kaggle Planets Competition](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson3-planet-my-reimplementation.ipynb?flush_cache=true)
 
 ### Week 4: NLP, Tabular, and Collaborative Filtering
 * [MovieLens Collaborative Filtering](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson4-collab-my-reimplementation.ipynb?flush_cache=true)
