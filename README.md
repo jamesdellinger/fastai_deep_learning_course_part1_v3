@@ -22,6 +22,6 @@
 * [Neural Nets for Tabular Data](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson4-tabular-my-reimplementation.ipynb?flush_cache=true)
 
 ### Week 5: Foundations of Neural Networks
-* [Stochastic Gradient Descent on MNIST; Writing My Own version of PyTorch's nn.Linear Class](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson5-sgd-mnist-my-reimplementation.ipynb?flush_cache=true)
+* [Stochastic Gradient Descent on MNIST; Writing My Own Version of PyTorch's nn.Linear Class](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson5-sgd-mnist-my-reimplementation.ipynb?flush_cache=true)
 * [Implementing Momentum from Scratch](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson2-sgd-my-reimplementation-with-momentum.ipynb?flush_cache=true)
 
