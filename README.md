@@ -2,8 +2,7 @@
 *Putting to use the tools and methods learned each week.*
 
 ## My Mini Sideprojects
-* [Blue Jay species classifier](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson1_mini_sideproject.ipynb?flush_cache=true)        
-     * [Writeup on Medium](https://medium.com/@jamesdell/if-i-can-you-can-and-you-should-a470d7aea89d)
+* [Blue Jay species classifier](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson1_mini_sideproject.ipynb?flush_cache=true)  /  [Writeup on Medium](https://medium.com/@jamesdell/if-i-can-you-can-and-you-should-a470d7aea89d)
 
 ## My Reimplementations of Lesson Notebooks
 ### Week 1: Intro to Computer Vision
