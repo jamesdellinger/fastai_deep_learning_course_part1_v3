@@ -1,4 +1,4 @@
-# [Fast.ai](https://course.fast.ai/) `Practical Deep Learning for Coders` course v3
+# [Fast.ai](https://course.fast.ai/) *Practical Deep Learning for Coders* course - v3
 *Putting to use the tools and methods learned each week.*
 
 ## My Mini Sideprojects
