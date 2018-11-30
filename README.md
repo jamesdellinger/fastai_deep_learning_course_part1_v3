@@ -2,7 +2,8 @@
 *Putting to use the tools and methods learned each week.*
 
 ## My Mini Sideprojects
-* [Blue Jay Species Classifier](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson1_mini_sideproject.ipynb?flush_cache=true)  /  [Writeup on Medium](https://medium.com/@jamesdell/if-i-can-you-can-and-you-should-a470d7aea89d)
+* [Blue Jay Species Classifier](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson1_mini_sideproject.ipynb?flush_cache=true)
+    * [Writeup on Medium](https://medium.com/@jamesdell/if-i-can-you-can-and-you-should-a470d7aea89d)
 * [Implementing Momentum from Scratch](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson2-sgd-my-reimplementation-with-momentum.ipynb?flush_cache=true)
 * [Writing My Own Version of PyTorch's nn.Linear Class](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson5-sgd-mnist-my-reimplementation.ipynb?flush_cache=true)
 
