@@ -28,3 +28,5 @@
 * [Stochastic Gradient Descent on MNIST](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson5-sgd-mnist-my-reimplementation.ipynb?flush_cache=true)
 
 ### Week 6: Regularization and CNNs
+* [Weight Embeddings for Categorical Features in Tabular Data](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson6-rossmann-my-reimplementation.ipynb?flush_cache=true)
+* [Convolutional Kernels and Coding Heatmaps from Scratch](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson6-pets-more-my-reimplementation.ipynb?flush_cache=true)
