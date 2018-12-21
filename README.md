@@ -39,7 +39,7 @@
 * [Demystifying RNNs, GRUs, and LSTM Cells](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-human-numbers-my-reimplementation.ipynb?flush_cache=true)
 
 ## Completion Certificate
-* [<img src="https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/deep-learning-part-1-fall-2018.png" height="50"> Part 1 (weeks 1 through 7)](https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/badge_112423_all.pdf)
+* [<img src="https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/deep-learning-part-1-fall-2018.png" height="50"> Part 1 (weeks 1 through 7)](https://openbadgepassport.com/app/badge/info/112423)
 
 ## Dependencies
 * [requirements.txt](https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/requirements.txt)
