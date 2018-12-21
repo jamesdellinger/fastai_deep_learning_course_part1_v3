@@ -30,3 +30,17 @@
 ### Week 6: Regularization and CNNs
 * [Weight Embeddings for Categorical Features in Tabular Data](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson6-rossmann-my-reimplementation.ipynb?flush_cache=true)
 * [Convolutional Kernels and Coding Heatmaps from Scratch](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson6-pets-more-my-reimplementation.ipynb?flush_cache=true)
+
+### Week 7: ResNets, UNets, GANs, and RNNs
+* [Understanding ResNet Blocks](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-resnet-mnist-my-reimplementation.ipynb?flush_cache=true)
+
+* [Super Resolution using UNet and Perceptual Loss (on Pet Images)](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-superres-my-reimplementation.ipynb?flush_cache=true)
+
+* [Super Resolution using a GAN with Pre-Trained Generator and Discriminator Networks](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-superres-gan-my-reimplementation.ipynb?flush_cache=true)
+
+* [Training a WGAN to Generate Life-like Images from Noise](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-wgan-my-reimplementation.ipynb?flush_cache=true)
+
+* [Demystifying RNNs, GRUs, and LSTM Cells](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-human-numbers-my-reimplementation.ipynb?flush_cache=true)
+
+## Completion Certificate
+* [<img src="https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/deep-learning-part-1-fall-2018.png" height="40"> Part 1 (weeks 1 through 7)](https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/badge_112423_all.pdf)
