@@ -33,14 +33,14 @@
 
 ### Week 7: ResNets, UNets, GANs, and RNNs
 * [Understanding ResNet Blocks](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-resnet-mnist-my-reimplementation.ipynb?flush_cache=true)
-
 * [Super Resolution using UNet and Perceptual Loss (on Pet Images)](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-superres-my-reimplementation.ipynb?flush_cache=true)
-
 * [Super Resolution using a GAN with Pre-Trained Generator and Discriminator Networks](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-superres-gan-my-reimplementation.ipynb?flush_cache=true)
-
 * [Training a WGAN to Generate Life-like Images from Noise](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-wgan-my-reimplementation.ipynb?flush_cache=true)
-
 * [Demystifying RNNs, GRUs, and LSTM Cells](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/lesson7-human-numbers-my-reimplementation.ipynb?flush_cache=true)
 
 ## Completion Certificate
-* [<img src="https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/deep-learning-part-1-fall-2018.png" height="40"> Part 1 (weeks 1 through 7)](https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/badge_112423_all.pdf)
+* [<img src="https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/deep-learning-part-1-fall-2018.png" height="60"> Part 1 (weeks 1 through 7)]     (https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/badge_112423_all.pdf)
+
+## Dependencies
+* [requirements.txt](https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/requirements.txt)
+* [environment.yml](https://github.com/jamesdellinger/fastai_practical_deep_learning_course_v3/blob/master/quadcopter_project.yml)
