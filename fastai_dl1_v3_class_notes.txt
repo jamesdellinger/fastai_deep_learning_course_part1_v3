@@ -1,0 +1,636 @@
+PART I: Deep Learning for Coders
+
+Lesson 1
+Computer Vision -- Intro
+Monday, October 22, 2018
+------------------------
+
+Only way to get feel for how to make good DL models is to simply make lots of models and get lots of experience understanding why and how they work.
+
+When you're training models, the most important thing is to be able to interact and experiment quickly (hence, shortcuts like: from fastai import *)
+
+Deep learning getting so much better so fast, so this year no more dog v. cats classifier, but distinguishing between breeds of dogs and cats.
+
+Union[pathlib.Path, str] means either a pathlib.Path type or a str type
+
+pat means pattern
+
+If data isn't normalized, it'll be quite difficult for models to train well
+
+Actually looking at the dataset you've been given is one of the most crucial steps
+
+Transfer Learning = taking a model that already knows how to do something well, and training it to do your thing really well
+
+Press shift-tab to see what parameters to pass to a method
+
+If model sees same pic too many times, it'll learn to recognize only that pic, and not generalize -> reason to not train too many epochs
+
+Don't make the mistake of not running the code and only researching theory as you study this course! 
+
+Advice from Jeremy: "Pick one project, do it really well, make it fantastic."
+
+Also from Jeremy: "I don't really want you all to go to OpenAI, or Google Brain. Rather, I want you to take what you learn and go back and bring deep learning into your workplace, or passion project."
+
+Also from Jeremy re. forums: "We were all beginners at one point, so get out there and don't be afraid to post in the forums (write blogs, etc.)"
+
+Inception tends to be pretty memory-intensive; resnet tends to work pretty well across a wide range of applications.
+
+Having a high loss: you were very confident about a prediction but it was incorrect
+
+It's good to do lr.find() after unfreezing
+
+learning rate = "how quickly am I updating my parameters in my model"
+
+new way to do discriminative lrs: max_lr = slice(1e-6,1e-4) -> second value should be around 10x greater than first value
+
+Mnist example shows how to create labels
+
+fast.ai docs don't just tell you what to do; they tell you how to do it. In fact, all of fast.ai docs come just from Jupyter notebooks.
+
+HW Lesson 1:
+-run notebook L1
+-get your own image dataset (Francisco putting a guide that shows how to download data from Google images)
+-get on the forum and share how your dataset experiment went
+
+
+Lesson 2
+Computer Vision - Deeper Applications
+Tuesday, October 30, 2018
+-------------------------
+
+It's okay to treat a Jupyter notebook like a lab journal and not run the cells top-to-bottom, but just experiment and iterate as you go -- that's what Jeremy does.
+
+Combining a human expert with a computer learner is a good idea. eg. for cleaning an imageset downloaded from Google image search.
+
+Deep learning models are good with dealing with datasets that have moderate amounts of random noise. If the noise is biased, then that would cause a problem.
+
+Production deep learning models are usually run on CPUs, since usually only one inference (forward pass) is being run (by a user) at a time.
+
+Starlette is a good toolkit for making webapps. It supports 'await' functionality. 
+
+Python anywhere is a good free hosting solution.
+
+FileDeleter class is a great way to delete bad images all from inside your notebook. This idea of creating applications (like FileDeleter) inside notebooks, is really underused, but very helpful for practitioners.
+
+Googleing for ipywidgets will show you what kind of widgets you can create for a notebook.
+
+Two biggest things that can go wrong when training:
+    1. Learning rate too high or too low
+    2. Number of epochs too high or too low
+
+Never want training loss to be higher than validation loss.
+
+Despite what you may have heard, it's actually very hard to overfit with deep learning.
+
+Only way to know for sure you're overfitting: error rate improves for a while, and then starts getting worse and worse.
+
+Absolutely NOT True (though many people will say it is so): If your validation loss is much higher than your training loss, you are overfitting. <-- This is a fallacy.
+
+Many times you need less data than you think. Organizations spend too much time gathering too much data. Instead, start with just a small amount of data, and work your way up.
+
+Unbalanced data (say 200 grizzlies and only 50 teddy bears), usually works and isn't an issue.
+
+In Python, x@a means a vector product of x and a
+
+"tensor" means an array of regular shape
+
+with tensors, we say "rank" instead of dimension. Rank just means how many axes there are.
+
+x = torch.ones(n,2) means telling pytorch we want to create a rank two tensor of 2 columns and n rows.
+
+In pytorch, putting an underscore after a function doesn't return a result but updates the variable inplace.
+
+eg. x[:,0].uniform_(-1,1) means fill the first column of x with random numbers drawn from a uniform distribution in (-1,1)
+
+cross entropy loss is used for classification problems. It penalizes incorrect confident preds, and correct unconfident preds. Also known as negative log likelihood loss.
+
+Regularization: all the techniques to make sure we train our model so that it can generalize to unseen data.
+
+If there's one thing you can teach to people who aren't taking this course but who are interested in "AI": It's the importance of a validation set!
+
+HW Lesson 2:
+-create and deploy a webapp for a classifier you've trained.
+-try running the sgd notebook with a large learning rate and a small learning rate and see how the animation changes
+
+
+Lesson 3
+Multi-Label Segmentation, Image Regression, And More...
+Thursday, November 8, 2018
+--------------------------
+
+Can run a classifier in the cloud and have it talk to an iOS/Android app you've built. Just run the classifier in a REST API and have the app talk to it. No need to run inference locally using the phone OS's API & phone's processor.
+
+Jeremy says if you finish within the top 10% on kaggle, you really know what you're doing
+
+fastai data block API is useful for letting you customize exactly how you want to store your training/val/test data (helps you define folders/labels/etc.)
+
+Important PyTorch/fastai classes you should know:
+    1. Dataset() - the structure of your data
+    2. DataLoader() - grabs individual items, combines them into a mini-batch, and puts them onto the GPU
+    3. DataBunch - fastai class; takes a training set dataloader, and a val set dataloader, can send this off to a learner to train on
+
+python __getitem__(self,index) method in a class means that your object can be indexed with square brackets
+
+python __len__(self) method in a class means that your object can return a number when it is passed to len()
+
+example using datablocks from mnist (from a notebook in the docs folder in the fastai github repo):
+
+data = (ImageFileList.from_folder(path)
+                     .label_from_folder()
+                     .split_by_folder()
+                     .add_test_folder()
+                     .datasets()
+                     .transform(tfms,size=128)
+                     .databunch())
+
+for datablocks, the order of steps matters
+
+fastai is first library to provide perspective warping transform max_warp
+
+if you're looking at satellite/cell data etc, be sure to set flip_vert=True
+
+f_score, nice way to combine model's tendency towards both false positives and false negatives, into one metric
+
+using partial() lets you modify a metric to accept a threshold. eg, if I want to have an accuracy_thresh metric always called with a threshold of 0.2:
+    acc_02 = partial(accuracy_thresh, thresh=0.2)
+
+with deep learning it's often the case that once you get to the point where the data is organized, there's actually not much else left to do ... the training part is pretty straightforward, esp. with fastai
+
+when fine-tuning, you can use the total original dataset, or you can only use only the examples from the training set that were mis-classified during the first rd. of training
+
+call lr.find() again after learn.unfreeze(), but shape is typically very different. Rule of thumb: look for point where lr begins to shoot up, and pick 10x smaller than that for the first half of slice, then take original lr and divide by 10 or 5 for value for second half of slice
+
+segmentation problems=classification of each pixel in each image of a dataset
+
+Don't forget to cite your datasets to give credit to the people who worked so hard to curate them.
+
+Interesting project: review all the notebooks from all lessons and see if you can discover a consistently applicable heuristic for automatically choosing a lr from the output of lr.find().
+
+use open_image() to open normal image files, and use open_mask() to open mask files!! (masks contain numerical codes representing segment categories)
+
+Jeremy first came up with progressive image size scaling in the course a few years ago -- it ended up being the main trick they used to win the imagenet dawnbench competition. There are still a lot of unknowns about size and number of stages. Jeremy found that going under 64x64 tends to not help so much.
+
+if you're underfitting, you can train for more epochs, you can lower the learning rate, and if still underfitting, you need to cut out on other sources of regularization (dropout, weight decay, augmentation)
+
+fastai makes it really easy to create a unet by using learner.create_unet()
+
+learn.recorder is where we keep track of what's going on during training
+
+gradually increasing the learning rate is a really good way to get your model to explore more of the surface of the loss function, and much more quickly find a part where the loss is low and flat, meaning your model will generalize more quickly.
+
+be sure to plot learn.recorder.plot_losses() so you can see if you need to adjust your learning rate
+
+mixed precision training: to_fp16(), half-precision floating-point, fastai is the only library that makes it easy; just add .to_fp16() to the end of a learner object; a 2080ti supports this; works twice as fast as not using it; even ig u don't have a 2080ti, still adding .to_fp16() will decrease your GPU ram usage. Why adding .to_fp16() works: making things a bit less precise in deep learning helps make things generalize better.
+
+regression doesn't mean linear regression, it means any kind of model where your output is a number that comes from a continuous range.
+
+when doing transfer learning from imagenet for eg, you need to normalize your images using the stats (mean, std, etc) from imagenet.
+
+when doing transfer learning from imagenet to images with 2 or 4 channels (imagenet has 3). You add an extra channel to your images if you have 2 channels (these could be ). If your images have 4 channels, than you add an extra channel to your weight tensors coming from imagenet.
+
+HW Lesson 3:
+-Come up with an interesting idea of a problem you'd like to solve (amongst image classification, image segmentation, text sentiment classification, or text translation) and see if you can solve it. You will find the hardest part is creating the databunch.
+-SF study group is working to train a neural net to provide better (than YouTube currently does) captions to fast.ai YouTube videos -- maybe work together with them through forums or something.
+-go to course-v3.fast.ai/depployment_zeit.html to see how to deploy a classifier webapp
+
+
+Lesson 4
+NLP, Tabular, and Collaborative Filtering
+Tuesday, November 13, 2018
+--------------------------
+
+One change to datablock api: split step now comes before label
+
+Until just earlier this year, neural nets didn't do a good job of classifying sentiment from text (eg. IMDB reviews). The breakthrough was using transfer learning:
+    1. Train a model to understand English
+    2. Then train that model to understand the kind of English used in the target text corpus (say, all the IMDB reviews).
+    3. Finally train the model to classify the corpus (IMDB reviews, in our case).
+
+Old approach for NLP = use n-grams. But n-grams are terrible at understanding language. The better approach is train a RNN to predict the next word that would follow a sequence of words used as an input.
+
+SMerity and his colleagues curated the Wikitext-103 dataset. Training on this corpus, a model will have to make about 1 billion predictions. This is an example of self-supervised learning. The "labels" are just the next word of each sequence.
+
+Training a model on this corpus not only teaches a RNN English, but teaches it a lot about what's going on in our world/how it works/etc. -- lots of the context that lends meaning to language.
+
+Training on Wikitext-103 is similar to training on imagenet.
+
+When training NLP, we usually restrict vocab so that our weight matrix doesn't get too big (because each vocab will be a row in our weight matrix).
+
+It can take 2-3 days to train Wikitext-103 from scratch on the GPU.
+
+IS THERE A JAPANESE MODEL THAT'S BEEN TRAINED ON AN EQUIV. OF WIKITEXT-103?
+
+Good trick: when training the language model for step 2: to just understand that language specific to the corpus, be sure to concatenate train and test sets together to use as much language as possible to train. 
+
+language_model_learner() creates an RNN
+
+Being able to guess the next word of a movie review about 1/3 of the time (which is what happened after training stage 2 on IMDB reviews for 10 epochs) is pretty good.
+
+We don't care about being able to use our model to generate high quality "move review-like" text. There are other tricks for this, which we don't use here.
+
+With text classification, unfreezing all layers but the top layer at once isn't optimal. It's better to gradually gradually unfreeze layers successively from training round to training round.
+
+Jeremy's best models for IMDB have been able to get around 95% accuracy. (the model in the notebook gets around 94%)
+
+Why lr is divided by 2.6**4 (the increment that it lr is increased by from layer to layer -- discriminative learning rates) for NLP tasks: Jeremy ran many experiments and used random forests to see what lr would give best results. Built a forest to predict what accuracy would get from what lr. Ultimately found that adjusting by steps of size 2.6**4 from layer to layer was best.
+
+Rachel and Jeremy not fans of auto-ml, but are fans of building models (like random forests) to better understand ideal hyperparameter choices for deep learning models.
+
+Tabular data is most interesting use-case for deep learning since it is what most people work with for their jobs.
+
+Feature engineering doesn't go away but gets way simpler when using neural nets for tabular datasets.
+
+Pinterest famously replaced their GBMs with neural nets (categorical embedding for tabular cat variables). Made their pipeline much simpler -- no more need for building several custom engineered features.
+
+Jeremy went from using random forests 99% of time with tabular data, to using neural nets 90% of time with tabular data.
+
+fastai lib has lots of processes for tab data. eg. FillMissing, Categorify, Normalize
+
+Fastai replaces missing vals by inserting median, and adding a column that indicates whether the entry (row) had originally been missing (value = 1) or not (value = 0)
+
+You want your validation sets to be contiguous groups of things. Eg. split by time, or if map, map entries that are next to each other (would have been nice to do this for TGS salt). If don't do this, you could have a weaker val set that would leak to training --> you'd think your model is better than it actually is on private LB.
+
+Collaborative Filtering: you have information about who bought what or who liked what. Eg. the movielens dataset -- goal is to predict what rating a user would give a movie. 
+
+In practice, collaborative filtering is trickier -- cold start problem -- you care most about giving recs to new users or recommending new movies (things you don't have data for yet). Conceptually the only way to solve this is to have a second model that's a metadata model for new users/movies that looks at user's geography, gender, age, etc.
+
+Fastai has model zoo with base NLP language models for many languages.
+
+Generally you don't use RNNs for time series tabular data. Instead you extract a bunch of columns related to the timestamps, such as day of the week, month, time of day, holiday or not, etc...
+
+Solver is Excel extension that does gradient descent.
+
+Biases capture properties unique to say a movie, or a user.
+
+Very common to have a sigmoid of some sort of similar activation function as your final layer. Cause you will likely want final output that's in-between two values. Such as a movie rating between 0 and 5.
+
+HW Lesson 4:
+-Find out how Smerity curated Wikitext-103. See if something similar exists for Japanese. If not, see how I could create and train a Japanese equivalent of Wikitext-103. (See if one exists in fastai's model zoo.)
+-SF study group meets everyday on weekdays. See thread on Part 1 v3 section in forum.
+
+
+Lesson 5
+Foundations of Neural Networks
+Monday, November 19, 2018
+-------------------------
+
+This lesson attempts to teach us how the tools we've been using actually go about solving the problems we've been using them to solve thus far.
+
+When you take a pre-trained ResNet34, the final output layer has 1,000 probability values, because ImageNet has 1,000 categories.
+
+However, for us, we usually don't have 1,000 categories, so we need to throw away the final weight matrix from ResNet34. 
+
+Instead, we replace that final matrix with two new weight matrices.
+
+As you progress through pre-trained ResNet34 layers, the later layers become more specific and more sophisticated, and the earlier layers capture more basic shapes and edges.
+
+When you call learn.freeze() it freezes all layers except for the randomly generated final layer.
+
+We use discriminative learning rates do much more training (higher lr) on later layers and slightly less training (lower lr) on lower layers.
+
+If you use a single number like 1e-3, then all layers get the same lr.
+
+If you use slice(1e-3), the final layer's lr is 1e-3, and the other layers have lrs of 1e-3/3
+
+If you have slice(1e-5, 1e-3), then the first layer's lr is 1e-5, and final layer is 1e-3, and all intermediate layers have lrs equally distributed in the range between 1e-5 and 1e-3. 
+
+Fastai automatically groups the various layers of ResNet34 into layer groups. Each layer group has its own lr when discriminative lrs are used.
+
+Multiplying by a one-hot encoded matrix is always identical to doing an array look-up.
+
+"Embedding" means just "look something up in an array." But since doing an embedding is the mathematically the same as matrix multiplication by a one-hot encoded matrix, it's very similar to the rest of the stuff we do with neural networks.
+
+Essentially, user encodings encapsulate characteristics of an individual's preferences, and movie encodings encapsulate features or characteristics of movies. These are called latent factors or latent features.
+
+Importantly, we add in bias to account for unique characteristics of a particular movie or user -- it's how we have a model not predict a user (who likes John Travolta -- this is their latent factor) would like 'Battlefield Earth' (a movie with John Travolta -- this is its latent factor), which is actually just a bad movie. The bias parameter encapsulates the fact that this particular John Travolta movie is actually a bad one which wouldn't be liked.
+
+Bias handles questions like "Is this a good movie?" or "Is this user someone who tends to rate movies higher on the whole?"
+
+When you get unicode decode errors with Python, try using encoding='latin-1' (usually the dataset was created by some westerner/european who was using latin-w by default).
+
+Good trick for collab filtering: make the y-range go from a little below the minimum to a little above the maximum. (Otherwise, you won't be able to ever predict the maximum rating (5, for movielens) or minimum rating (0.5, for movielens) so we do y_range=[0,5.5]
+
+When using lr.find() be sure to try lrs 10x less and 10x greater than the lr you'd first pick -- be experimental and be flexible.
+
+Taking layers of neural nets and chucking them through PCA is very often a good idea. Cause you often have way more activations than you need. Chucking through PCA reduces the dimensionality to something more manageable and useful and interpretable.
+
+Weight decay is a type of regularization. Models with more parameters tend to look really curvy, like a very high degree polynomial function, which means greater likelihood of overfitting/poor generalization. So traditionally, statisticians advocate for using less parameters to cut back on overfitting. They saw value in making models "less complex" and would encourage their students to do this.
+
+However, in deep learning we use more parameters. So, we use regularization to make our models "less complex" without losing out on the parameters. This way, we can use as many parameters as necessary so that we can more accurately approximate what we observe in real life, and still not overfit.
+
+Basically, with deep learning, we want our models to be curvy enough, but not more curvy than necessary. We penalize complexity to keep them from getting too curvy. Regularization is how we incorporate this penalty. Specifically with L2 regularization, we have a penalty that's based on the sum of the squares of the parameters.
+
+Too conservatively select weight decay, err on the side of having too small a weight decay than too large a weight decay.
+
+Basically, in general, a dataset in PyTorch looks like a list of (x,y) tuples.
+
+calling .item() on a tensor just returns a normal python item
+
+Weight decay lets you make giant neural networks and avoid overfitting.
+
+Momentum is a kind of exponentially weighted moving average.
+
+Momentum tells the update to be based on the current gradient, plus the exponentially weighted moving average of the last few steps.
+
+RMSProp in a nutshell: if our gradients are consistently small and not changing that much, let's take bigger jumps. (the exponentially weighted moving average of steps)
+
+Adam: combines momentum and RMSProp into one optimizer.
+
+Some people refer to optimizers like Adam as having dynamic learning rates, but you do still need to set an initial value for learning rate.
+
+Cross-entropy loss: just another loss function for making predictions for multiple categories, like in the case of MNIST where u are predicting probabilities for ten numerical digit categories zero through nine.
+
+In order for cross-entropy to loss to work, all the output probabilities (activations of final layer) need to add up to one. In order to ensure this, you have to use the proper final activation function.
+
+For single label multi class categorization, you use softmax final layer activation function along with cross-entropy loss to achieve this.
+
+Batchnorm and dropout are two other regularization strategies (although batchnorm also does a bit more than just regularization). We'll look at both of these next week.
+
+HW Lesson 5:
+-Update the lesson4-collab and lesson4-tabular nbs if necessary
+-Try and write PyTorch classes from scratch and learn how to debug them. Eg. try to write your own version of nn.Linear, or your own version of nn.Module (call it myLinear, and myModule, for example). Use the lesson5-sgd-mnist notebook to compare your versions to PyTorch's versions and verify that the results are the same.
+-Take lesson2-sgd notebook and add momentum to it
+
+
+Lesson 6
+Regularization and CNNs
+Tuesday, November 27, 2018
+--------------------------
+
+4 years ago Jeremy showed at a TED talk a way to creaete models from unlabeled data
+
+As fast.ai students we are among the first to be able to beta-test this
+
+platform.ai is where this is finally being released now. You can go there and create your own project (upload around 500 or so images to start).
+
+Use middle layers, and then search through the various projections to see which projection has already separated out things (such as the angle of the car in the photo, ie. front-left) that you're interested in.
+
+In principle, this product takes advantage of human+machine problem solving
+
+After you have found several images that are grouped into a category you care about, select them all, remove any that don't fit the category.
+
+Start off by going through Rossman competition notebook.
+
+Kaggle competition results tend to be much harder than academic results to beat, cause much more people work on Kaggle competitions.
+
+Most people (economists) who study time-series data, study a very specific use-case (only one thing changes from point to point in time, where nothing else change, such as prices). In real life this is rarely the case. For example, in the Rossman competition, we don't use a RNN to do time series, and instead simply use the add_datepart() function to add all sorts of time-related metadata columns as features to the Rossman data. For example, we look at whether the particular day was a holiday, weekend, what day of week, month, etc.
+
+This lets you treat many time series problems as normal tabular problems.
+
+Preprocesses: run once on training set, and then apply to val/test sets. Using only the medians(for imputing missing values)/categories/etc. computed from training data. Eg. with categorify() function, you use on val/test just the categories found in training data.
+
+If in doubt, and your cardinality isn't too high, just err on the side of making a feature a categorical variable, instead of treating it as a continuous variable.
+
+Rossman eval metric is root-mean percent squared error. But if we take the log of it, it's just like root mean squared error. So we take the log of our y values and then use RMSE as our NN loss function.
+
+Make sure to thus also convert y_range to log y_range
+
+Use regularization, not parameter reduction, to reduce overfitting.
+
+Dropout: for each minibatch we throw away a different subset of activations with probability p. 
+
+A common value for p is 0.5
+
+When you ask people where their ideas for algorithms come from (like Geoffrey Hinton in creating dropout), they usually give intuitive sources of inspiration that were embedded in real-world experiences/problems.
+
+Dropout only occurs during training. At test time we want to be as accurate as possible and so we remove dropout.
+
+Bernoulli trial: with probability of 1-p keep the activation; with probability of p remove it.
+
+Jeremy found cat feat embedding dropout worked well for Rossman, through a process of extensive experimentation.
+
+fastai lets you choose size of cat feat embeddings. But its defaults tend to work really well.
+
+Dang! -- dropout was originally introduced in a Master's thesis (Srivastave, Nitish, et al) and was originally rejected from NIPS. This is a reminder: the academic community is typically very bad at recognizing what will be actually useful. The stuff that "everyone is talking about" generally turns out not to be very interesting later on down the line in the longer term.
+
+Batch-norm inventors came up with a post-hoc explanation of why it worked (reduce internal covariate shift) that was totally bogus (demonstrated by two papers in last three months).
+
+Batch-norm algo in a nutshell:
+    -find mean of activations in a layer's minibatch
+    -then find variance
+    -then normalize 
+    -(most important) take those normalized values and add a vector of biases and also multiply the normalized values by a coefficient (a multiplicative bias layer)
+
+In a nutshell: batch norm makes it much easier for the NN to shift outputs up and down as necessary.
+
+momentum param in fastai BatchNorm layers is not traditional NN optimizer momentum (ie. SGD + momentum) we are familiar with, it's cause we use exponentially weighted moving average to calculate mean in activations when doing batchnorm
+
+Next form of regularization is: data augmentation
+
+It's the least well-studied form of regularization.
+
+Revisit pets dataset, this time using data augmentation:
+
+Looking at the variations of photos in your dataset helps you to know reasonable values for different data aug params. Rule of thumb: don't choose a value that would add aug photos that are totally dissimilar (say, in brightness) to any kinds of photos in your dataset.
+
+Reflection works best most of time for padding.
+
+fastai lets you choose background color when u rotate pics, of the areas in the square that are no long covered by the pic since the pic is tilted. Making it zero (black) helps, as opposed to having it be just white.
+
+We can generate heatmaps that show what parts of the image the CNN focuses on when it tried to decide what category the image belonged to.
+
+We will learn how to create heatmaps from scratch using raw tensors and pure PyTorch. Try it out a few times on your own.
+
+A convolution is just a kind of matrix multiplier -- an element wise multiplication of each of the pixels in a particular section of an image (dimensions identical to those of the kernel/filter) by each of the weights in the kernel/filter.
+
+Output of one convolutional filter is called a "channel"
+
+You can use padding to get an output channel that is the same size as the convolution layer's input.
+
+The fastai library normally uses reflection padding, not '0' padding.
+
+When you have multiple channels in your conv layer input, you don't want to use the same weights in the filters that pass over each channel. For example, if we're trying to create a green frog detector, we would need a filter that can recognize the color green (activate for the green channel differently than it would activate for the red or blue channels)
+
+So what we do is create a kernel that has a 3rd dimension as big as the number of input channels. So if there are 3 channels for rgb color inputs, we have a nxnx3 kernel, where n is the height/width of the kernel. The weights of each of the 3 2d filters are different, and each 2d filter passes over the corresponding input channel.
+
+Each of these "cube" shaped kernels outputs a flat 2d activation matrix. In order to have multiple output channels, you would have several 3d "cube" shaped filters that you pass over your input channels. 
+
+As we get deeper in the network, we want to have more and more channels, so we can find richer features, such as eyeball detectors etc.
+
+In modern conv networks, as you have more layers, from time to time, the kernel will move with a stride of 2, which results in the output activations having height and width half the size of the inputs. Amount of kernels is typically doubled as well, so that the output activations will have twice as many channels as the inputs.
+
+All the kernels are stored in a rank-4 tensor. Basically, just a bunch of rank-3 tensors sitting on top of each other.
+
+format: [4th d, channel, height, width]
+
+How to get from final conv layer of network to output activation layer containing probabilities for categories: 
+    1. Take the mean of each (say, 512) channel (which has, say, a height x width of 11x11). (called average pooling)
+    2. This will give us a vector of 512 values.
+    3. Pop through a matrix multiplier of 512x37 (where 37 is number of categories, say)
+
+Conceptually, each of these 512 input layers represents qualities (like say fluffy ears, if we're classifying cats)
+
+To make a heatmap, we average each pixel in the 11x11 face by across all 512 channels, this tells us, for each part of the cat's image, how many of our network's filters activated (saw something interesting) that influenced its prediction of the cat's breed.
+
+A "hook" is a PyTorch feature that lets you "hook" into the PyTorch machinery itself and run any arbitrary Python code that you may want to run.
+
+For making the heatmap, we "hook into" the forward pass of our conv network, and tell PyTorch to store the activations of the final conv layer right after it calculates them.
+
+That's how we get the 512x11x11 tensor that we will average across the channel dimension in order to get our 11x11 heatmap.
+
+Always remember to remove a hook once you've got what you want. Otherwise, every time you run the model it will keep saving more and more outputs. Can by accomplished in Python by using a context management block (with _ )
+
+Ethics and Data Science:
+
+Generative modeling (text, images) are an area of biggest breakthru for deep learning over past 12 months, but need ethics
+
+Most of images in imagenet come from US and Great Britain
+
+Lots of bias in content we're creating cause there's bias in the people creating the content.
+
+Biased data is creating biased algorithms.
+
+Algorithms are increasingly being used to decide public policy or judicial things, like who's gonna go to jail, and who should be let out on bail.
+
+These jail algorithms ask people questions like did their parents ever go to jail. So what happens is some people stay or leave jail based in part on what their parents did (stuff totally out of their control).
+
+Humans should be interacting with and supervising AI algorithms. Humans can tell right from wrong; algorithms often can't. Facebook's decision to fire its human editors and use only algorithms was a recipe for disaster.
+
+When ethics issues blow up, it's often a blame game and no one takes responsibility. 
+
+However, it's the responsibility of the person creating the algorithm and dataset to be proactive in alerting users to potential issues.
+
+From the start, you should think about possible unintended consequences of the thing you're working on. And as technical people, you need to get out in front and make sure people are working on them.
+
+Talk to people who might be impacted by your algorithms, and understand what the world looks like through their eyes.
+
+HW Lesson 6:
+-See if you can create your own dropout layer (just like nn.dropout, call it myDropout) in Python and see if you can replicate the results that fastai gets in Rossman.
+-also create a minibatch with one item that gives output identical to calling one_item()
+
+
+Lesson 7
+ResNets, U-nets, GANs, and RNNs
+Wednesday, December 12, 2018
+----------------------------
+
+Fast.ai study group in SF begins January 8th (Tues).
+
+fastai-users/dev-projects in forums is where you can see how to contribute to the library.
+
+Goal of this week's lesson is to give us enough things to keep us busy thinking about until deep learning part II begins in March.
+
+Reshama has a 2 min demo video on the forum demonstrating how to create iOS and Android apps using fastai models
+
+lesson7-resnet-mnist notebook:
+
+defaults.cmap = 'binary' sets default fastai colormap to binary (instead of, say, rgb)
+
+empty array in tfms = ([*rand_pad(padding=3, size=28, mode='zeros')], []) refers to augmentations (none) that will be performed on validation set images
+
+for each conv layer, you get to pick how many filters you will have, which will decide how many channels the output/activation layer has
+
+fastai's conv_layer() contains conv-batchnorm-relu layers
+
+'Deep Redidual Learning for Image Recognition' ResNet paper from Kaiming He, et al.
+
+Really good researchers, when they see something weird in one of their experiments, they don't go "well, that's not working," instead, they go "hmm, that's interesting, let's see what's going on."
+
+This is how Kaiming He developed ResNet -- he saw that the training error of a 56 layer convnet was higher than that of a 20 layer, when you'd expect the 56 layer network to overfit more to the training data (cause it has more parameters) and thus would have a lower error.
+
+This investigation led to skip connections, which are the core component of Resnets
+
+'Visualizing the Loss Landscape of Neural Nets' -- good paper that came out this year from Hao Li et al.
+
+56 layer neural network without skip connections  has a very bumpy loss landscape, but the same network with skip connections has a much smoother loss landscape with one obvious global minumum.
+
+Refactor your architectures a lot, so you'll make much less mistakes. Researchers don't do this with their code.
+
+Because ResNet is so popular, lots of dl libraries optimize for them, so they train faster.
+
+When you use a concatenate instead of a plus, it's called a DenseNet block, not a ResNet block. That's the only difference betweeen DenseNets and ResNets
+
+Because they use concat, they keep the features from all the layers, and thus they are very memory-intensive, but they have not many parameters at all. So when you have small datasets, DenseNets tend to work well with small datasets. DenseNets also good for segmentation because they keep all the features from all layers so it's easier to reconstruct original images (in order to show where the segmentations will be)
+
+Architecture of fastai's unet_learner gets better and better; now is up to 94.1% accuracy on the camvid task that 100 Layers Tiramisu (fully convolutional DenseNets for segmentation) got only 91.5% on.
+
+To double grid size: do deconvolutions/ aka transpose convolutions, which is a conv with a stride of 1/2
+
+'A guide to convolution arithmetic for deep learning' - good paper by Vincent Dumoulin and Francesco Visin
+
+But a year and a half ago folks realized that the approach described in that paper wasn't the smartest way to do deconvs -- too much empty white pixels
+
+The new approach is called nearest neighbor interpolation, and then do a stride 1 conv
+
+Another approach is using 'bilinear interpolation' -- instead of copying a cell to the new cells, take the average
+
+In part II we'll learn that the fastai library is doing somethng a bit more complex than bilinear interpolation called pixel shuffle.
+
+Before Unet, it was really hard to reconstruct the original image space. the center layer was too small.
+
+'encoder' refers to the left half of the Unet (which is based on ResNet34 in our case cause we're using a pretrained model)
+
+We put hooks into the ResNet34 to store the activations each time there is a stride-2 conv, and then concatenate these to the upsampling conv at each appropriate level
+
+Unet first started getting popular (outside of medical imaging community) when people started winning kaggle segmentation competitions with it.
+
+lesson7-superres-gan notebook:
+
+in order to build a model that can clean up images, we need to take nice images, and make them bad and then train the model to turn those back into the nice images
+
+better to use a pre-trained model that knows what objects, dogs, etc look like, especially for removing obtrusive label text/watermarks from images
+
+UNet does a good job of removing watermarks, but the upsampling is just so-so
+
+We need a loss function that does a better job than pixel mean squared error loss of telling us if we are upsampling well.
+
+GANs call another model as their loss function
+
+fastai does a trick where it uses a pre-trained generator and pre-trained critic. If you don't do this, it gets harder to train, and that's why GANs have the reputation as being hard to train.
+
+run following two lines as good way to reset GPU memory without restarting notebook:
+learn_gen=None
+gc.collect()
+
+When you're doing a GAN, you have to be careful that the generator and critic don't push in the same direction and make the weights blow up out of control. Spectral normalization is used to prevent this.
+
+GANs use both the pixel MSE loss and discriminator loss. If only used discriminator loss, would create something that looks like a real photo, but not necessarily like the original photo at all. 
+
+While training GANs, the loss numbers are meaningless; we expect them to stay about the same, cause it's an arms race between the generator and discriminator
+
+So we print out image samples after each epoch to see how well our generator is doing.
+
+Any kind of generative modeling is good for using Unets, cause segmentation is a kind of generative modeling cause you are generating a mask that shows where the segmentation is.
+
+lesson7-wgan notebook:
+
+Wasserstein GANs - first paper to do adequate job somewhat easily of training a GAN to create brand new images
+
+We feed the generator random noise, and then the generator learns to turn the random noise into something that the critic can't distinguish from being a real image.
+
+lesson7-superres notebook:
+
+create a loss function that takes into account whether or not the cleaned up image contains the right features in the right places.
+
+paper: 'Perceptual Losses for Real-Time Style Transfer and Super-Resolution'
+
+loss function has a content target and a style target
+
+trains a lot faster than a GAN (only 1.5 hr on 1 GPU) and gets as good or better quality for superresolution
+
+Jason Antic did something similar with how he made DeOldify (he was a student in the course last year)
+
+His capstone project was to combine GANs and feature-losses together.
+
+github.com/jantic/DeOldify
+
+What similar kinds of breakthrough things could you build that haven't been built before??
+
+lesson7-human-numbers notebook:
+
+predicting next word in a sequence using RNNs
+
+generally speaking, when you have two sets of activations coming together in a diagram, you have the choice of concatenating or adding them
+
+RNNs are basically a re-factored fully connected deep neural network. No reason to be intimidated by them. Just refactored in order to deal with sequential inputs.
+
+Jeremy's work advice:
+-properly finish whatever you start
+-do things that you have fun doing
+
+HW Lesson 7:
+-re-implement all notebooks covered in class
+-In general until deep learning II starts: Write code/papers/blog posts; Help on the forum/share success stories; Gather book club/meetups/study groups; Build apps/work projects/libraries
+-get involved in the fastai project
+-build something that reflects just a bit of yourself and put it out there -- doesn't have to be great just something you think is neat.
+
