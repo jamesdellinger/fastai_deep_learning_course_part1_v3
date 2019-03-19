@@ -1,7 +1,7 @@
 # [Fast.ai](https://www.fast.ai/2019/01/24/course-v3/) Practical Deep Learning for Coders (Fall 2018)
 *Part I of Fast.ai's two-part deep learning course. From October through December of 2018. Part II is [here](https://github.com/jamesdellinger/fastai_deep_learning_course_part2_v3).*
 
-A top-down approach to becoming a deep learning practitioner. We firstlearn how to obtain state-of-the-art results in several deep learning tasks. Then we dig deeper, developing an intricate understanding of the theory behind the techniques we use.
+A top-down approach to becoming a deep learning practitioner. We first learn how to obtain state-of-the-art results in several deep learning tasks. Then we dig deeper, developing an intricate understanding of the theory behind the techniques we use.
 
 ## My Mini Sideprojects
 * [Blue Jay Species Classifier](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_deep_learning_course_part1_v3/blob/master/lesson1_mini_sideproject.ipynb?flush_cache=true)
