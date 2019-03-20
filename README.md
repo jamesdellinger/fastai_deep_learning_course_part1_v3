@@ -41,7 +41,7 @@ A top-down approach to becoming a deep learning practitioner. We first learned h
 * [Demystifying RNNs, GRUs, and LSTM Cells](http://nbviewer.jupyter.org/github/jamesdellinger/fastai_deep_learning_course_part1_v3/blob/master/lesson7-human-numbers-my-reimplementation.ipynb?flush_cache=true)
 
 ## USF Completion Certificate
-[<img src="https://github.com/jamesdellinger/fastai_deep_learning_course_part1_v3/blob/master/deep-learning-part-1-fall-2018.png" height="150"> /r Verify at Open Badge](https://openbadgepassport.com/app/badge/info/112423)
+[<img src="https://github.com/jamesdellinger/fastai_deep_learning_course_part1_v3/blob/master/deep-learning-part-1-fall-2018.png" height="150"><br>Verify at Open Badge](https://openbadgepassport.com/app/badge/info/112423)
 
 ## Dependencies
 * [requirements.txt](https://github.com/jamesdellinger/fastai_deep_learning_course_part1_v3/blob/master/requirements.txt)
